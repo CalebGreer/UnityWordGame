@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2ad842c34f50f054eb5307b64c4c3564
+guid: 10abf771f06230f4e89cba5e8764e31b
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Coolvetica
+  - Code Bold
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
