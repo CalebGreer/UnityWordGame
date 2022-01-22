@@ -15,16 +15,16 @@ public class KeyboardKey : MonoBehaviour
     [SerializeField] private Color m_correctPositionColour;
     private Color m_defaultColour = Color.grey;
 
-    KeyboardController m_parentController;
+    KeyboardView m_parentView;
 
-    public void Setup(KeyboardController parent)
+    public void Setup(KeyboardView parent)
     {
-        m_parentController = parent;
+        m_parentView = parent;
     }
 
     public void OnLetterKeyPress()
     {
-        m_parentController.AddLetterToGuess(m_keyText.text);
+        m_parentView.AddLetterToGuess(m_keyText.text);
     }
 
     public void OnEnterPressed()
@@ -34,6 +34,6 @@ public class KeyboardKey : MonoBehaviour
 
     public void OnDeletePressed()
     {
-        m_parentController.RemoveLastLetter();
+        m_parentView.RemoveLastLetter();
     }
 }

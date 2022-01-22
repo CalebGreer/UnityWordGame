@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WordGameManager : MonoBehaviour
 {
-    public GuessViewController m_guessViewController;
+    public GameViewController m_gameViewController;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_guessViewController.Setup();
+        m_gameViewController.Setup();
     }
 
     // Update is called once per frame

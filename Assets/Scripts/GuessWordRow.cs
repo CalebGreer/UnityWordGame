@@ -7,17 +7,32 @@ public class GuessWordRow : MonoBehaviour
     [SerializeField] private GuessLetterCell m_letterCell;
 
     private List<GuessLetterCell> m_letterCells = new List<GuessLetterCell>();
-    private GuessViewController m_parentView;
+    private GuessView m_parentView;
+    private int m_currentLetterIndex = 0;
 
-    public void Setup(GuessViewController parent, int wordLength)
+    public void Setup(GuessView parent)
     {
         m_parentView = parent;
 
-        for (int i = 0; i < wordLength; i++)
+        for (int i = 0; i < m_parentView.GetWordLength(); i++)
         {
             GuessLetterCell cell = Instantiate(m_letterCell, this.transform);
             cell.Setup(this);
             m_letterCells.Add(cell);
         }
+
+        m_currentLetterIndex = 0;
+    }
+
+    public void AddLetterToGuess(string letter)
+    {
+        m_letterCells[m_currentLetterIndex].SetGuessLetter(letter);
+        m_currentLetterIndex = Mathf.Clamp(m_currentLetterIndex + 1, 0, m_parentView.GetWordLength() - 1);
+    }
+
+    public void RemoveLetterFromGuess()
+    {
+        m_letterCells[m_currentLetterIndex].SetGuessLetter("");
+        m_currentLetterIndex = Mathf.Clamp(m_currentLetterIndex - 1, 0, m_parentView.GetWordLength() - 1);
     }
 }
