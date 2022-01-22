@@ -27,12 +27,12 @@ public class GuessWordRow : MonoBehaviour
     public void AddLetterToGuess(string letter)
     {
         m_letterCells[m_currentLetterIndex].SetGuessLetter(letter);
-        m_currentLetterIndex = Mathf.Clamp(m_currentLetterIndex + 1, 0, m_parentView.GetWordLength() - 1);
+        m_currentLetterIndex = Mathf.Clamp(m_currentLetterIndex + 1, 0, m_parentView.GetWordLength());
     }
 
     public void RemoveLetterFromGuess()
     {
+        m_currentLetterIndex = Mathf.Clamp(m_currentLetterIndex - 1, 0, m_parentView.GetWordLength());
         m_letterCells[m_currentLetterIndex].SetGuessLetter("");
-        m_currentLetterIndex = Mathf.Clamp(m_currentLetterIndex - 1, 0, m_parentView.GetWordLength() - 1);
     }
 }
