@@ -35,4 +35,9 @@ public class GuessWordRow : MonoBehaviour
         m_currentLetterIndex = Mathf.Clamp(m_currentLetterIndex - 1, 0, m_parentView.GetWordLength());
         m_letterCells[m_currentLetterIndex].SetGuessLetter("");
     }
+
+    public void SetGuessLetterState(int index, LetterState state)
+    {
+        m_letterCells[index].SetGuessLetterState(state);
+    }
 }

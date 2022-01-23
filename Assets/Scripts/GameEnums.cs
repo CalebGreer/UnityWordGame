@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GuessLetterState
+public enum LetterState
 {
     Default = 0,
     Incorrect = 1,

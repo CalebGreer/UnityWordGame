@@ -27,4 +27,22 @@ public class KeyboardView : MonoBehaviour
     {
         m_parentController.RemoveLastLetter();
     }
+
+    public void SubmitGuess()
+    {
+        m_parentController.SubmitGuess();
+    }
+
+    public void SetKeyboardLetterState(char letter, LetterState state)
+    {
+        for (int i = 0; i < m_keyboardKeys.Count; i++)
+        {
+            if(letter == m_keyboardKeys[i].GetKeyLetter())
+            {
+                m_keyboardKeys[i].SetKeyboardLetterState(state);
+                break;
+            }
+        }
+        
+    }
 }

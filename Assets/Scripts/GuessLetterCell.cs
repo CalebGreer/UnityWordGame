@@ -14,8 +14,8 @@ public class GuessLetterCell : MonoBehaviour
     [SerializeField] private Color m_correctLetterColour;
     [SerializeField] private Color m_correctPositionColour;
     
-    private Color m_defaultColor = Color.black;
-    private GuessLetterState m_currentState = GuessLetterState.Default;
+    private Color m_defaultColour = Color.black;
+    private LetterState m_currentState = LetterState.Default;
     private GuessWordRow m_parent;
 
     public void Setup(GuessWordRow parent)
@@ -32,32 +32,32 @@ public class GuessLetterCell : MonoBehaviour
         m_letterText.text = letter;
     }
 
-    public void SetGuessLetterState(GuessLetterState newState)
+    public void SetGuessLetterState(LetterState newState)
     {
         m_currentState = newState;
-        UpdateLetterStateVisuals();
+        UpdateGuessLetterStateVisuals();
     }
 
-    private void UpdateLetterStateVisuals()
+    private void UpdateGuessLetterStateVisuals()
     {
         switch(m_currentState)
         {
-            case GuessLetterState.Default:
-                m_backgroundImage.color = m_defaultColor;
+            case LetterState.Default:
+                m_backgroundImage.color = m_defaultColour;
                 m_cellOutline.effectColor = m_incorrectColour;
                 break;
 
-            case GuessLetterState.Incorrect:
+            case LetterState.Incorrect:
                 m_backgroundImage.color = m_incorrectColour;
                 m_cellOutline.effectColor = m_incorrectColour;
                 break;
 
-            case GuessLetterState.CorrectLetter:
+            case LetterState.CorrectLetter:
                 m_backgroundImage.color = m_correctLetterColour;
                 m_cellOutline.effectColor = m_correctLetterColour;
                 break;
 
-            case GuessLetterState.CorrectPosition:
+            case LetterState.CorrectPosition:
                 m_backgroundImage.color = m_correctPositionColour;
                 m_cellOutline.effectColor = m_correctPositionColour;
                 break;

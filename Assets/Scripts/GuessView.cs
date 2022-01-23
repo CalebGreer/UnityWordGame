@@ -44,6 +44,10 @@ public class GuessView : MonoBehaviour
         return m_parentController.GetWordLength();
     }
 
+    public void SetGuessLetterState(int index, LetterState state)
+    {
+        m_guessRows[m_currentGuessIndex].SetGuessLetterState(index, state);
+    }
 
 #if UNITY_EDITOR
     [ContextMenu("Reset")]
