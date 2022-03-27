@@ -7,11 +7,11 @@ public class GuessView : MonoBehaviour
     [SerializeField] private int m_numGuesses = 6;
     [SerializeField] private GameObject m_guessesContainer;
     [SerializeField] private GuessWordRow m_guessRow;
+    [SerializeField] private WordGameErrorMessage m_errorMessage;
 
     private GameViewController m_parentController;
     private List<GuessWordRow> m_guessRows = new List<GuessWordRow>();
     private int m_currentGuessIndex = 0;
-    private int m_wordLength = 0;
 
 
     [ContextMenu("Setup")]
@@ -39,14 +39,24 @@ public class GuessView : MonoBehaviour
         m_guessRows[m_currentGuessIndex].RemoveLetterFromGuess();
     }
 
-    public int GetWordLength()
+    public int GetCurrentGameWordLength()
     {
-        return m_parentController.GetWordLength();
+        return m_parentController.GetCurrentGameWordLength();
     }
 
     public void SetGuessLetterState(int index, LetterState state)
     {
         m_guessRows[m_currentGuessIndex].SetGuessLetterState(index, state);
+    }
+
+    public void MoveToNextGuess()
+    {
+        m_currentGuessIndex--;
+    }
+
+    public void ShowErrorMessage(string message)
+    {
+        m_errorMessage.ShowErrorMessage(message);
     }
 
 #if UNITY_EDITOR

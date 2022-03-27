@@ -29,6 +29,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1494413670574012699}
   m_RootOrder: 0
@@ -89,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.227451, g: 0.227451, b: 0.23529413, a: 1}
-  m_EffectDistance: {x: 4, y: -4}
+  m_EffectDistance: {x: 4, y: 4}
   m_UseGraphicAlpha: 1
 --- !u!1 &1494413670574012700
 GameObject:
@@ -120,6 +121,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1494413669317377215}
   - {fileID: 1494413671365030866}
@@ -143,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8274f3724ffb94ab26c278d7305f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_letterText: {fileID: 1494413671365030865}
+  m_letterText: {fileID: 3859848952193660595}
   m_backgroundImage: {fileID: 1494413669317377213}
   m_cellOutline: {fileID: 1494413669317377214}
   m_incorrectColour: {r: 0.227451, g: 0.227451, b: 0.23529413, a: 1}
@@ -164,8 +166,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 200
-  m_PreferredHeight: 200
+  m_PreferredWidth: 100
+  m_PreferredHeight: 100
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -193,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1494413671365030866}
   - component: {fileID: 1494413671365030864}
-  - component: {fileID: 1494413671365030865}
+  - component: {fileID: 3859848952193660595}
   m_Layer: 5
   m_Name: Letter
   m_TagString: Untagged
@@ -211,6 +213,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1494413670574012699}
   m_RootOrder: 1
@@ -228,7 +231,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494413671365030867}
   m_CullTransparentMesh: 1
---- !u!114 &1494413671365030865
+--- !u!114 &3859848952193660595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,16 +252,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 10abf771f06230f4e89cba5e8764e31b, type: 3}
-    m_FontSize: 55
+    m_Font: {fileID: 12800000, guid: 619b1c034bdc7a243a25b0c094b62dd8, type: 3}
+    m_FontSize: 64
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 5
-    m_MaxSize: 80
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 64
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: A
+  m_Text: 

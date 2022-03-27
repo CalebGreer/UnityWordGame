@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: 10abf771f06230f4e89cba5e8764e31b
+guid: 619b1c034bdc7a243a25b0c094b62dd8
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 64
+  fontSize: 32
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Code Bold
+  - Monofonto
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 2
+  fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1

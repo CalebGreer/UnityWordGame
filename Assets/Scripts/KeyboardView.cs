@@ -37,12 +37,12 @@ public class KeyboardView : MonoBehaviour
     {
         for (int i = 0; i < m_keyboardKeys.Count; i++)
         {
-            if(letter == m_keyboardKeys[i].GetKeyLetter())
+            if (letter == m_keyboardKeys[i].GetKeyLetter())
             {
                 m_keyboardKeys[i].SetKeyboardLetterState(state);
                 break;
             }
         }
-        
+
     }
 }
