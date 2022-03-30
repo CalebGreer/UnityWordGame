@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class WordGamePlayerPrefHandler
 {
@@ -19,6 +20,7 @@ public class WordGamePlayerPrefHandler
     public int CurrentStreak { get; private set; }
     public int MaxStreak { get; private set; }
 
+    public int TimesLooped { get; private set; }
 
     public WordGamePlayerPrefHandler()
     {
@@ -82,9 +84,24 @@ public class WordGamePlayerPrefHandler
         {
             CurrentStreak = 0;
         }
+
+        SavePlayerPrefs();
     }
 
-    private void LoadPlayerPrefs()
+    public int GetGamesWon()
+    {
+        return FirstGuessAmount + SecondGuessAmount + ThirdGuessAmount + FourthGuessAmount + FifthGuessAmount + SixthGuessAmount;
+    }
+
+    public void ResetWordNumber()
+    {
+        WordNumber = 0;
+        TimesLooped++;
+        SavePlayerPrefs();
+        LoadPlayerPrefs();
+    }
+
+    public void LoadPlayerPrefs()
     {
         WordNumber = PlayerPrefs.GetInt("WordNumber", 0);
 
@@ -99,6 +116,8 @@ public class WordGamePlayerPrefHandler
 
         CurrentStreak = PlayerPrefs.GetInt("CurrentStreak", 0);
         MaxStreak = PlayerPrefs.GetInt("MaxStreak", 0);
+
+        TimesLooped = PlayerPrefs.GetInt("TimesLooped", 0);
     }
 
     private void SavePlayerPrefs()
@@ -125,5 +144,15 @@ public class WordGamePlayerPrefHandler
         {
             PlayerPrefs.SetInt("MaxStreak", MaxStreak);
         }
+
+        PlayerPrefs.SetInt("TimesLooped", TimesLooped);
     }
+
+#if UNITY_EDITOR
+    [MenuItem("PlayerPrefs/Delete All PlayerPrefs")]
+    private static void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+#endif
 }

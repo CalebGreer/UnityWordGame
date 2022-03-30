@@ -487,7 +487,6 @@
 		"Gayly",
 		"Godly",
 		"Great",
-		"Haply",
 		"Heavy",
 		"Hella",
 		"Hence",

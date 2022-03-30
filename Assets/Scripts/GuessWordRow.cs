@@ -24,6 +24,16 @@ public class GuessWordRow : MonoBehaviour
         m_currentLetterIndex = 0;
     }
 
+    public void ResetRow()
+    {
+        for (int i = 0; i < m_letterCells.Count; i++)
+        {
+            m_letterCells[i].ResetCell();
+        }
+
+        m_currentLetterIndex = 0;
+    }
+
     public void AddLetterToGuess(string letter)
     {
         m_letterCells[m_currentLetterIndex].SetGuessLetter(letter);

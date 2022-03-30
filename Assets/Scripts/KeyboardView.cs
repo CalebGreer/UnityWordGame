@@ -18,6 +18,14 @@ public class KeyboardView : MonoBehaviour
         }
     }
 
+    public void ResetViews()
+    {
+        for (int i = 0; i < m_keyboardKeys.Count; i++)
+        {
+            m_keyboardKeys[i].ResetKey();
+        }
+    }
+
     public void AddLetterToGuess(string letter)
     {
         m_parentController.AddLetterToGuess(letter);

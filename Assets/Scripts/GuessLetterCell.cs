@@ -27,6 +27,12 @@ public class GuessLetterCell : MonoBehaviour
         SetGuessLetterState(m_currentState);
     }
 
+    public void ResetCell()
+    {
+        m_letterText.text = "";
+        SetGuessLetterState(LetterState.Default);
+    }
+
     public void SetGuessLetter(string letter)
     {
         m_letterText.text = letter;

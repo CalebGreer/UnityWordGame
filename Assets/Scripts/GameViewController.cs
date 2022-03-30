@@ -6,9 +6,11 @@ public class GameViewController : MonoBehaviour
 {
     [SerializeField] private GuessView m_guessView;
     [SerializeField] private KeyboardView m_keyboardView;
+    [SerializeField] private WordGameErrorMessagePopup m_errorMessage;
+    [SerializeField] private WordGameStatScreenPopup m_statPopup;
+    [SerializeField] private WordGameWordPopup m_wordPopup;
 
-    [SerializeField] private string m_wordGuess;
-
+    private string m_wordGuess = "";
     private WordGameManager m_wordGameManger;
     private string m_currentGameWord;
     private int m_currentGameWordLength;
@@ -17,6 +19,7 @@ public class GameViewController : MonoBehaviour
     {
         m_wordGameManger = wordGameManager;
 
+        m_statPopup.Setup(this);
         m_guessView.Setup(this);
         m_keyboardView.Setup(this);
 
@@ -24,8 +27,34 @@ public class GameViewController : MonoBehaviour
         m_currentGameWordLength = m_wordGameManger.GetCurrentGameWordLength();
     }
 
+    public void ResetViews()
+    {
+        m_wordGuess = "";
+        m_currentGameWord = m_wordGameManger.GetCurrentGameWord();
+        m_currentGameWordLength = m_wordGameManger.GetCurrentGameWordLength();
+        m_wordPopup.HidePopup();
+
+        m_guessView.ResetViews();
+        m_keyboardView.ResetViews();
+    }
+
+    public void ShowStatPopup(bool wordGuessed, int guessAttempt)
+    {
+        m_statPopup.ShowPopup(wordGuessed, guessAttempt);
+    }
+
+    public void OnStatsClicked()
+    {
+        m_statPopup.ShowPopup();
+    }
+
     public void AddLetterToGuess(string letter)
     {
+        if (IsGameFinished())
+        {
+            return;
+        }
+
         if (m_wordGuess.Length < m_currentGameWordLength)
         {
             m_wordGuess += letter;
@@ -35,6 +64,11 @@ public class GameViewController : MonoBehaviour
 
     public void RemoveLastLetter()
     {
+        if (IsGameFinished())
+        {
+            return;
+        }
+
         if (m_wordGuess.Length > 0)
         {
             m_wordGuess = m_wordGuess.Remove(m_wordGuess.Length - 1);
@@ -44,27 +78,75 @@ public class GameViewController : MonoBehaviour
 
     public void SubmitGuess()
     {
+        if (IsGameFinished())
+        {
+            return;
+        }
+
         // Add Checks to make sure word is valid and long enough
         if (m_wordGuess.Length != m_currentGameWordLength)
         {
-            m_guessView.ShowErrorMessage("Not enough letters");
+            m_errorMessage.ShowErrorMessage("Not enough letters");
             return;
         }
 
         if (!m_wordGameManger.IsGuessValid(m_wordGuess))
         {
-            m_guessView.ShowErrorMessage("Not in word list");
+            m_errorMessage.ShowErrorMessage("Not in word list");
             return;
         }
 
         UpdateLetterStatus();
-        m_wordGuess = "";
-        m_guessView.MoveToNextGuess();
+
+        // Check if Game is done
+        if (m_wordGuess == m_currentGameWord.ToUpper())
+        {
+            WordFinished(m_guessView.GetCurrentGuessAttempt(), true);
+        }
+        else
+        {
+            m_wordGuess = "";
+            m_guessView.MoveToNextGuess();
+        }
+    }
+
+    public bool NewWordClicked()
+    {
+        if (m_wordGameManger.IsGameFinished())
+        {
+            m_wordGameManger.NextWord();
+            return true;
+        }
+        else
+        {
+            m_errorMessage.ShowErrorMessage("Finish the current word.");
+            return false;
+        }
+    }
+
+    public void WordFinished(int guessAttempt, bool correctWordGuessed)
+    {
+        m_wordGameManger.CorrectWordGuessed(guessAttempt, correctWordGuessed);
+
+        if (!correctWordGuessed)
+        {
+            m_wordPopup.ShowPopup(m_currentGameWord);
+        }
+    }
+
+    public bool IsGameFinished()
+    {
+        return m_wordGameManger.IsGameFinished();
     }
 
     public int GetCurrentGameWordLength()
     {
         return m_wordGameManger.GetCurrentGameWordLength();
+    }
+
+    public WordGamePlayerPrefHandler GetPlayerPrefs()
+    {
+        return m_wordGameManger.GetPlayerPrefs();
     }
 
     private void UpdateLetterStatus()

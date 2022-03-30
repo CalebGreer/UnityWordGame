@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WordGameErrorMessage : MonoBehaviour
+public class WordGameErrorMessagePopup : MonoBehaviour
 {
     [SerializeField] private Text m_messageText;
     [SerializeField] private Animation m_animation;

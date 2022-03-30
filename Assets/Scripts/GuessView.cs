@@ -7,7 +7,6 @@ public class GuessView : MonoBehaviour
     [SerializeField] private int m_numGuesses = 6;
     [SerializeField] private GameObject m_guessesContainer;
     [SerializeField] private GuessWordRow m_guessRow;
-    [SerializeField] private WordGameErrorMessage m_errorMessage;
 
     private GameViewController m_parentController;
     private List<GuessWordRow> m_guessRows = new List<GuessWordRow>();
@@ -26,7 +25,17 @@ public class GuessView : MonoBehaviour
             m_guessRows.Add(row);
         }
 
-        m_currentGuessIndex = m_guessRows.Count - 1;
+        m_currentGuessIndex = 0;
+    }
+
+    public void ResetViews()
+    {
+        m_currentGuessIndex = 0;
+
+        for (int i = 0; i < m_guessRows.Count; i++)
+        {
+            m_guessRows[i].ResetRow();
+        }
     }
 
     public void AddLetterToGuess(string letter)
@@ -49,14 +58,19 @@ public class GuessView : MonoBehaviour
         m_guessRows[m_currentGuessIndex].SetGuessLetterState(index, state);
     }
 
-    public void MoveToNextGuess()
+    public int GetCurrentGuessAttempt()
     {
-        m_currentGuessIndex--;
+        return m_currentGuessIndex + 1;
     }
 
-    public void ShowErrorMessage(string message)
+    public void MoveToNextGuess()
     {
-        m_errorMessage.ShowErrorMessage(message);
+        m_currentGuessIndex++;
+
+        if (m_currentGuessIndex >= m_numGuesses)
+        {
+            m_parentController.WordFinished(GetCurrentGuessAttempt(), false);
+        }
     }
 
 #if UNITY_EDITOR

@@ -30,6 +30,12 @@ public class KeyboardKey : MonoBehaviour
         }
     }
 
+    public void ResetKey()
+    {
+        m_keyImage.color = m_defaultColour;
+        m_currentState = LetterState.Default;
+    }
+
     public void OnLetterKeyPress()
     {
         m_parentView.AddLetterToGuess(m_keyText.text);
